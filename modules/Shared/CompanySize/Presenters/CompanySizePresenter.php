@@ -20,7 +20,8 @@ class CompanySizePresenter extends AbstractPresenter
     {
         return [
             'id' => $this->companySize->id,
-            'name' => $this->companySize->name,
+            'from' => $this->companySize->from,
+            'to' => $this->companySize->to,
         ];
     }
 }
