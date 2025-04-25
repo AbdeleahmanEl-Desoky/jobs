@@ -21,6 +21,8 @@ class CountryPresenter extends AbstractPresenter
         return [
             'id' => $this->country->id,
             'name' => $this->country->name,
+            'phonecode'=>$this->country->phonecode,
+            'iso3' => $this->country->iso3
         ];
     }
 }
