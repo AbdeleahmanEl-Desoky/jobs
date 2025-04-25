@@ -17,7 +17,7 @@ class CityFilter extends SearchModelFilter
 
     public function countryId($countryId)
     {
-        return $this->where('countryId', $countryId);
+        return $this->where('country_id', $countryId);
     }
 
 }
