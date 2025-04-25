@@ -33,6 +33,16 @@ class Company extends Authenticatable implements JWTSubject
         'phone',
         'type',
         'password',
+        'last_name',
+        'phonecode',
+        'country_id',
+        'city_id',
+        'postal_code',
+        'minimum_salary_amount',
+        'Payment_period',
+        'about',
+        'field_id',
+        'company_size_id',
     ];
 
     protected $casts = [

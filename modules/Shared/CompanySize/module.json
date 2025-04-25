@@ -1,0 +1,14 @@
+{
+    "name": "CompanySize",
+    "alias": "companysize",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Shared\\CompanySize\\Providers\\CompanySizeServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\Shared"
+}
