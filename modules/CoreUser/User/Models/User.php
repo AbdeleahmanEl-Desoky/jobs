@@ -13,11 +13,19 @@ use BasePackage\Shared\Traits\BaseFilterable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class User extends Authenticatable implements JWTSubject
+use Modules\CoreUser\Education\Models\Education;
+use Modules\Shared\City\Models\City;
+use Modules\Shared\Country\Models\Country;
+use Modules\Shared\JobTitle\Models\JobTitle;
+use Modules\Shared\StatusEmployment\Models\StatusEmployment;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class User extends Authenticatable implements JWTSubject, HasMedia
 {
     use HasFactory;
     use UuidTrait;
     use BaseFilterable;
+    use InteractsWithMedia;
     //use HasTranslations;
     //use SoftDeletes;
 
@@ -29,17 +37,19 @@ class User extends Authenticatable implements JWTSubject
 
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'phone',
         'type',
         'password',
-        'last_name',
         'phonecode',
         'country_id',
         'city_id',
+        'status_employment_id',
+        'job_title_id',
         'postal_code',
         'minimum_salary_amount',
-        'Payment_period',
+        'payment_period',
         'about',
     ];
 
@@ -91,5 +101,34 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function jobTitle()
+    {
+        return $this->belongsTo(JobTitle::class);
+    }
+
+    public function statusEmployment()
+    {
+        return $this->belongsTo(StatusEmployment::class);
+    }
+
+    public function educations()
+    {
+        return $this->hasMany(Education::class);
+    }
+    public function phoneCode()
+    {
+        return $this->belongsTo(Country::class,'phonecode','phonecode');
     }
 }

@@ -3,10 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Modules\CoreUser\User\Controllers\UserController;
 
-Route::group(['middleware' => ['auth:api']], function () {
+Route::group(['middleware' => ['auth:api_user']], function () {
     Route::get('/', [UserController::class, 'index']);
-    Route::post('/', [UserController::class, 'store']);
-    Route::get('/{id}', [UserController::class, 'show']);
-    Route::put('/{id}', [UserController::class, 'update']);
+    Route::post('/', [UserController::class, 'update']);
+    Route::get('/profile', [UserController::class, 'show']);
+    Route::post('/cv', [UserController::class, 'uploadCv']);
     Route::delete('/{id}', [UserController::class, 'delete']);
 });

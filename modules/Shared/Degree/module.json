@@ -1,0 +1,14 @@
+{
+    "name": "Degree",
+    "alias": "degree",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Shared\\Degree\\Providers\\DegreeServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\Shared"
+}

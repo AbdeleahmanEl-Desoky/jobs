@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('city_id')->index();
             $table->string('postal_code')->nullable();
             $table->decimal('minimum_salary_amount',10,2)->nullable();
-            $table->integer('Payment_period')->nullable();
+            $table->integer('payment_period')->nullable();
             $table->string('about')->nullable();
         });
     }
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->dropColumn('postal_code');
 
             $table->dropColumn('minimum_salary_amount');
-            $table->dropColumn('Payment_period');
+            $table->dropColumn('payment_period');
             $table->dropColumn('about');
 
         });

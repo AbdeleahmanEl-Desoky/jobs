@@ -5,9 +5,11 @@ namespace Modules\Shared\Field\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Shared\Field\Models\Field;
+use Ranium\SeedOnce\Traits\SeedOnce;
 
 class FieldSeederTableSeeder extends Seeder
 {
+    use SeedOnce;
     /**
      * Run the database seeds.
      *

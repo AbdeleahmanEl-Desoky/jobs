@@ -1,0 +1,14 @@
+{
+    "name": "Specialization",
+    "alias": "specialization",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Shared\\Specialization\\Providers\\SpecializationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\Shared"
+}

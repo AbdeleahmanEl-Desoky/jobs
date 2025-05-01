@@ -1,0 +1,14 @@
+{
+    "name": "Education",
+    "alias": "education",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoreUser\\Education\\Providers\\EducationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\CoreUser"
+}

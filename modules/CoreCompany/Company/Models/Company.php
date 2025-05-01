@@ -39,7 +39,7 @@ class Company extends Authenticatable implements JWTSubject
         'city_id',
         'postal_code',
         'minimum_salary_amount',
-        'Payment_period',
+        'payment_period',
         'about',
         'field_id',
         'company_size_id',

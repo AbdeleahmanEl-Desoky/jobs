@@ -14,8 +14,10 @@ use Modules\CoreUser\User\Requests\CreateUserRequest;
 use Modules\CoreUser\User\Requests\DeleteUserRequest;
 use Modules\CoreUser\User\Requests\GetUserListRequest;
 use Modules\CoreUser\User\Requests\GetUserRequest;
+use Modules\CoreUser\User\Requests\UpdateCvUserRequest;
 use Modules\CoreUser\User\Requests\UpdateUserRequest;
 use Modules\CoreUser\User\Services\UserCRUDService;
+use Modules\CoreUser\User\Services\UserUploadFileService;
 use Ramsey\Uuid\Uuid;
 
 class UserController extends Controller
@@ -24,10 +26,11 @@ class UserController extends Controller
         private UserCRUDService $userService,
         private UpdateUserHandler $updateUserHandler,
         private DeleteUserHandler $deleteUserHandler,
+        private UserUploadFileService $userUploadFileService
     ) {
     }
 
-    public function index(GetUserListRequest $request): JsonResponse
+    public function index(GetUserRequest $request): JsonResponse
     {
         $list = $this->userService->list(
             (int) $request->get('page', 1),
@@ -39,28 +42,30 @@ class UserController extends Controller
 
     public function show(GetUserRequest $request): JsonResponse
     {
-        $item = $this->userService->get(Uuid::fromString($request->route('id')));
+        $item = $this->userService->get(Uuid::fromString(auth('api_user')->user()->id));
 
         $presenter = new UserPresenter($item);
 
         return Json::item($presenter->getData());
     }
 
-    public function store(CreateUserRequest $request): JsonResponse
+    public function uploadCv(UpdateCvUserRequest $request)
     {
-        $createdItem = $this->userService->create($request->createCreateUserDTO());
+        $updateCvUserCommand = $request->createUpdateCvUserCommand();
 
-        $presenter = new UserPresenter($createdItem);
+        $this->userUploadFileService->uploadCv($updateCvUserCommand);
 
-        return Json::item($presenter->getData());
+        return Json::done('SUCCESS_WITHOUT_PAYLOAD');
     }
 
     public function update(UpdateUserRequest $request): JsonResponse
     {
-        $command = $request->createUpdateUserCommand();
-        $this->updateUserHandler->handle($command);
+        $updateUserCommand = $request->createUpdateUserCommand();
+        $this->updateUserHandler->handle($updateUserCommand);
 
-        $item = $this->userService->get($command->getId());
+        $item = $this->userService->get($updateUserCommand->getId());
+
+        $this->userUploadFileService->uploadProfile($updateUserCommand);
 
         $presenter = new UserPresenter($item);
 

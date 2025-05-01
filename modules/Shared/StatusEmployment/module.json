@@ -1,0 +1,14 @@
+{
+    "name": "StatusEmployment",
+    "alias": "statusemployment",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Shared\\StatusEmployment\\Providers\\StatusEmploymentServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\Shared"
+}
