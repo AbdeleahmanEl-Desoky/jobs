@@ -29,7 +29,9 @@ class EducationController extends Controller
 
     public function index(GetEducationListRequest $request): JsonResponse
     {
+        $userId = Uuid::fromString(auth('api_user')->user()->id);
         $list = $this->educationService->list(
+            $userId ,
             (int) $request->get('page', 1),
             (int) $request->get('per_page', 10)
         );

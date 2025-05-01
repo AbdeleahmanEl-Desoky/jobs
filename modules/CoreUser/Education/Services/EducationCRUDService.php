@@ -22,9 +22,10 @@ class EducationCRUDService
          return $this->repository->createEducation($createEducationDTO->toArray());
     }
 
-    public function list(int $page = 1, int $perPage = 10): array
+    public function list(UuidInterface $userId ,int $page = 1, int $perPage = 10): array
     {
         return $this->repository->paginated(
+            conditions:['user_id' => $userId],
             page: $page,
             perPage: $perPage,
         );
