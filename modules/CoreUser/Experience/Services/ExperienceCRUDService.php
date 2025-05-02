@@ -22,9 +22,10 @@ class ExperienceCRUDService
          return $this->repository->createExperience($createExperienceDTO->toArray());
     }
 
-    public function list(int $page = 1, int $perPage = 10): array
+    public function list(UuidInterface $userId ,int $page = 1, int $perPage = 10): array
     {
         return $this->repository->paginated(
+            ['user_id' => $userId],
             page: $page,
             perPage: $perPage,
         );

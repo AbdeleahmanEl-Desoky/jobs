@@ -7,5 +7,5 @@ Route::group(['middleware' => ['auth:api_user']], function () {
     Route::post('/', [UserController::class, 'update']);
     Route::get('/profile', [UserController::class, 'show']);
     Route::post('/cv', [UserController::class, 'uploadCv']);
-    Route::delete('/{id}', [UserController::class, 'delete']);
+    // Route::delete('/{id}', [UserController::class, 'delete']);
 });
