@@ -13,16 +13,16 @@ class CreateEducationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'degree_id' => 'required|uuid',
-            'country_id' => 'required|',
-            'city_id' => 'required|',
-            'field_id' => 'required',
-            'specialization_id' => 'required|uuid',
-            'university_id' => 'required|uuid',
+            'degree_id' => 'required|exists:degrees,id',
+            'country_id' => 'required|exists:countries,id',
+            'city_id' => 'required|exists:cities,id',
+            'field_id' => 'required|exists:fields,id',
+            'specialization_id' => 'required|exists:specializations,id',
+            'university_id' => 'required|exists:universities,id',
             'date_from' => 'required|date',
             'date_to' => 'required|date|after_or_equal:date_from',
             'graduation_grade_type' => 'required|in:GPA,percentage',
-            'graduation_grade_value' => 'required|integer',
+            'graduation_grade_value' => 'required|numeric',
             'description' => 'nullable|string',
         ];
     }

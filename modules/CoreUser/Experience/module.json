@@ -1,0 +1,14 @@
+{
+    "name": "Experience",
+    "alias": "experience",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoreUser\\Experience\\Providers\\ExperienceServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\CoreUser"
+}
