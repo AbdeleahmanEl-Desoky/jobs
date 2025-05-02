@@ -12,11 +12,9 @@ class StateFilter extends SearchModelFilter
 
     public function name($name)
     {
-        return $this->whereHas('translations',function($q) use ($name){
-            $q->where('content','like','%'.$name.'%');
-        });
+        return $this->where('name', 'like','%'.$name.'%');
     }
-    public function country($countryId)
+    public function countryId($countryId)
     {
         return $this->where('country_id', $countryId);
     }
