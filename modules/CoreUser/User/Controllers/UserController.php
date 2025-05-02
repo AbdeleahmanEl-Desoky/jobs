@@ -30,16 +30,6 @@ class UserController extends Controller
     ) {
     }
 
-    public function index(GetUserRequest $request): JsonResponse
-    {
-        $list = $this->userService->list(
-            (int) $request->get('page', 1),
-            (int) $request->get('per_page', 10)
-        );
-
-        return Json::items(UserPresenter::collection($list['data']), paginationSettings: $list['pagination']);
-    }
-
     public function show(GetUserRequest $request): JsonResponse
     {
         $item = $this->userService->get(Uuid::fromString(auth('api_user')->user()->id));
@@ -72,10 +62,10 @@ class UserController extends Controller
         return Json::item( $presenter->getData());
     }
 
-    public function delete(DeleteUserRequest $request): JsonResponse
-    {
-        $this->deleteUserHandler->handle(Uuid::fromString($request->route('id')));
+    // public function delete(DeleteUserRequest $request): JsonResponse
+    // {
+    //     $this->deleteUserHandler->handle(Uuid::fromString($request->route('id')));
 
-        return Json::deleted();
-    }
+    //     return Json::deleted();
+    // }
 }
