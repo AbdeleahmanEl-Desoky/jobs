@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
 
             $table->uuid('model_id');
-            $table->uuid('model_type');
+            $table->string('model_type');
             $table->uuid()->nullable()->unique();
             $table->string('collection_name');
             $table->string('name');

@@ -13,11 +13,18 @@ use BasePackage\Shared\Traits\BaseFilterable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-class Company extends Authenticatable implements JWTSubject
+use Modules\Shared\City\Models\City;
+use Modules\Shared\CompanySize\Models\CompanySize;
+use Modules\Shared\Country\Models\Country;
+use Modules\Shared\Field\Models\Field;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Company extends Authenticatable implements JWTSubject , HasMedia
 {
     use HasFactory;
     use UuidTrait;
     use BaseFilterable;
+    use InteractsWithMedia;
     //use HasTranslations;
     //use SoftDeletes;
 
@@ -48,6 +55,12 @@ class Company extends Authenticatable implements JWTSubject
     protected $casts = [
         'id' => 'string',
     ];
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
 
     protected static function newFactory(): CompanyFactory
     {
@@ -72,5 +85,27 @@ class Company extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function field()
+    {
+        return $this->belongsTo(Field::class);
+    }
+    public function companySize()
+    {
+        return $this->belongsTo(CompanySize::class);
+    }
+    public function phoneCode()
+    {
+        return $this->belongsTo(Country::class,'phonecode','phonecode');
     }
 }
