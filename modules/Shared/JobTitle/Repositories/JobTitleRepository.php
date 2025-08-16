@@ -26,14 +26,14 @@ class JobTitleRepository extends BaseRepository
         return $this->paginatedList([], $page, $perPage);
     }
 
-    public function getJobTitle(UuidInterface $id): JobTitle
+    public function getJobTitle(UuidInterface $id): EmployeeJobTitle
     {
         return $this->findOneByOrFail([
             'id' => $id->toString(),
         ]);
     }
 
-    public function createJobTitle(array $data): JobTitle
+    public function createJobTitle(array $data): EmployeeJobTitle
     {
         return $this->create($data);
     }

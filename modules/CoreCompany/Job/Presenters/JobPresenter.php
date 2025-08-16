@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\CoreCompany\Job\Presenters;
 
-use Modules\CoreCompany\Job\Models\Job;
+use Modules\CoreCompany\Job\Models\EmployeeJob;
 use BasePackage\Shared\Presenters\AbstractPresenter;
 
 class JobPresenter extends AbstractPresenter

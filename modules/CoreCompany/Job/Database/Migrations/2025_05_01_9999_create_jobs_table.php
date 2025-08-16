@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('employee_jobs', function (Blueprint $table) {
             $table->uuid('id')->primary()->index();
             $table->uuid('job_title_id')->index();
 
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             
-            $table->s('category_ids')->index();
+            $table->string('category_ids')->index();
         });
     }
 

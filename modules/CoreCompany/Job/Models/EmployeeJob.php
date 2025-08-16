@@ -11,7 +11,7 @@ use Modules\CoreCompany\Job\Database\factories\JobFactory;
 use BasePackage\Shared\Traits\BaseFilterable;
 //use BasePackage\Shared\Traits\HasTranslations;
 
-class Job extends Model
+class EmployeeJob extends Model
 {
     use HasFactory;
     use UuidTrait;
@@ -24,7 +24,7 @@ class Job extends Model
     public $incrementing = false;
 
     protected $keyType = 'string';
-
+    protected $table = "employee_jobs";
     protected $fillable = [
         'name',
     ];
@@ -33,7 +33,7 @@ class Job extends Model
         'id' => 'string',
     ];
 
-    protected static function newFactory(): JobFactory
+    protected static function newFactory(): EmployeeJobFactory
     {
         return JobFactory::new();
     }

@@ -14,12 +14,11 @@ class JobTitleCRUDService
 {
     public function __construct(
         private JobTitleRepository $repository,
-    ) {
-    }
+    ) {}
 
-    public function create(CreateJobTitleDTO $createJobTitleDTO): JobTitle
+    public function create(CreateJobTitleDTO $createJobTitleDTO): EmployeeJobTitle
     {
-         return $this->repository->createJobTitle($createJobTitleDTO->toArray());
+        return $this->repository->createJobTitle($createJobTitleDTO->toArray());
     }
 
     public function list(int $page = 1, int $perPage = 10): array
@@ -30,7 +29,7 @@ class JobTitleCRUDService
         );
     }
 
-    public function get(UuidInterface $id): JobTitle
+    public function get(UuidInterface $id): EmployeeJobTitle
     {
         return $this->repository->getJobTitle(
             id: $id,

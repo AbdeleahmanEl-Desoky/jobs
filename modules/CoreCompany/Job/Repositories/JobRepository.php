@@ -7,7 +7,7 @@ namespace Modules\CoreCompany\Job\Repositories;
 use BasePackage\Shared\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Ramsey\Uuid\UuidInterface;
-use Modules\CoreCompany\Job\Models\Job;
+use Modules\CoreCompany\Job\Models\EmployeeJob;
 
 /**
  * @property Job $model
@@ -26,14 +26,14 @@ class JobRepository extends BaseRepository
         return $this->paginatedList([], $page, $perPage);
     }
 
-    public function getJob(UuidInterface $id): Job
+    public function getJob(UuidInterface $id): EmployeeJob
     {
         return $this->findOneByOrFail([
             'id' => $id->toString(),
         ]);
     }
 
-    public function createJob(array $data): Job
+    public function createJob(array $data): EmployeeJob
     {
         return $this->create($data);
     }

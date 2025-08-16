@@ -33,7 +33,7 @@ class JobTitle extends Model
         'id' => 'string',
     ];
 
-    protected static function newFactory(): JobTitleFactory
+    protected static function newFactory(): EmployeeJobTitleFactory
     {
         return JobTitleFactory::new();
     }
