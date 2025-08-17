@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Modules\Shared\Category\Database\Seeders\CategorySeederTableSeeder;
 use Modules\Shared\CompanySize\Database\Seeders\CompanySizeSeederTableSeeder;
 use Modules\Shared\Degree\Database\Seeders\DegreeSeederTableSeeder;
 use Modules\Shared\Field\Database\Seeders\FieldSeederTableSeeder;
@@ -28,6 +29,6 @@ class DatabaseSeeder extends Seeder
        $this->call(UniversitiesSeederTableSeeder::class);
        $this->call(StatusEmploymentSeederTableSeeder::class);
        $this->call(DegreeSeederTableSeeder::class);
-
+        $this->call(CategorySeederTableSeeder::class); 
     }
 }

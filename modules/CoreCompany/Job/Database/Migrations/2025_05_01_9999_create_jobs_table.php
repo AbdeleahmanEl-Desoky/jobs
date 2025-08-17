@@ -14,15 +14,22 @@ return new class extends Migration
         Schema::create('employee_jobs', function (Blueprint $table) {
             $table->uuid('id')->primary()->index();
             $table->uuid('job_title_id')->index();
+            $table->string('type')->index();
+            $table->string('category_ids')->index();
+            $table->text('position_description')->nullable();
+            $table->text('company_description')->nullable();
+            $table->json('skill_ids')->nullable()->index();
+            $table->text('employee_description')->nullable();
+            $table->text('team_description')->nullable();
 
-            $table->text('description')->nullable();
-            $table->timestamp('company_description')->nullable();
-            $table->string('type')->default('company');
-            $table->string('password');
+            $table->json('interview')->nullable();
+
+            $table->string('salary_form');
+            $table->string('salary_to');
+
+            $table->string('pay');
             $table->rememberToken();
             $table->timestamps();
-            
-            $table->string('category_ids')->index();
         });
     }
 

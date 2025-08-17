@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Modules\CoreCompany\Job\Providers;
+namespace Modules\Shared\Category\Providers;
 
 use Illuminate\Support\Facades\Route;
 use BasePackage\Shared\Module\ModuleServiceProvider;
 
-class JobServiceProvider extends ModuleServiceProvider
+class CategoryServiceProvider extends ModuleServiceProvider
 {
     public static function getModuleName(): string
     {
-        return 'Job';
+        return 'Category';
     }
 
     public function boot(): void
@@ -28,7 +28,7 @@ class JobServiceProvider extends ModuleServiceProvider
 
     public function mapRoutes(): void
     {
-        Route::prefix('api/v1/companies/jobs')
+        Route::prefix('api/v1/categories')
             ->middleware('api')
             ->group($this->getModulePath() . '/Resources/routes/api.php');
 
