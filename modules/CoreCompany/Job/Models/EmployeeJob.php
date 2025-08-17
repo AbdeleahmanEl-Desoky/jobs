@@ -9,7 +9,9 @@ use BasePackage\Shared\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\CoreCompany\Company\Models\Company;
 use Modules\CoreCompany\Job\Database\factories\JobFactory;
+use Modules\CoreUser\ApplyJob\Models\ApplyJob;
 use Modules\CoreUser\Skill\Models\Skill;
 use Modules\Shared\Category\Models\Category;
 
@@ -24,6 +26,7 @@ class EmployeeJob extends Model
     protected $keyType = 'string';
     protected $table = "employee_jobs";
     protected $fillable = [
+        'company_id',
         'job_title_id',
         'position_description',
         'company_description',
@@ -81,4 +84,19 @@ class EmployeeJob extends Model
 
         return Category::whereIn('id', $this->category_ids)->get();
     }
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function applyJobUser()
+    {
+        return $this->hasOne(ApplyJob::class, 'employee_job_id')->where('user_id', auth('api_user')->user()->id);
+    }
+
+    public function applyJobCompany()
+    {
+        return $this->hasOne(ApplyJob::class, 'employee_job_id')->where('company_id', auth('api_company')->user()->id);
+    }
+
 }

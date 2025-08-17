@@ -7,6 +7,7 @@ namespace Modules\CoreCompany\Job\DTO;
 class CreateJobDTO
 {
     public function __construct(
+        public string $company_id,
         public string $job_title_id,
         public ?string $position_description,
         public ?string $company_description,
@@ -24,6 +25,7 @@ class CreateJobDTO
     public function toArray(): array
     {
         return [
+            'company_id' => $this->company_id,
             'job_title_id' => $this->job_title_id,
             'position_description' => $this->position_description,
             'company_description' => $this->company_description,

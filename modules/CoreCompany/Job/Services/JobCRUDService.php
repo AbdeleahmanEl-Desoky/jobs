@@ -24,6 +24,7 @@ class JobCRUDService
     public function list(int $page = 1, int $perPage = 10): array
     {
         return $this->repository->paginated(
+            ['company_id' => auth('api_company')->user()->id],
             page: $page,
             perPage: $perPage,
         );

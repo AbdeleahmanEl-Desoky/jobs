@@ -30,6 +30,7 @@ class CreateJobRequest extends FormRequest
     public function createCreateJobDTO(): CreateJobDTO
     {
         return new CreateJobDTO(
+            company_id : auth('api_company')->user()->id,
             job_title_id: $this->get('job_title_id'),
             position_description: $this->get('position_description'),
             company_description: $this->get('company_description'),

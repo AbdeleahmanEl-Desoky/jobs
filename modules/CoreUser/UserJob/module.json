@@ -1,0 +1,14 @@
+{
+    "name": "UserJob",
+    "alias": "userjob",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoreUser\\UserJob\\Providers\\UserJobServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\CoreUser"
+}
