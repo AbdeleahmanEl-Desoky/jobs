@@ -16,14 +16,14 @@ class UpdateJobRequest extends FormRequest
             'job_title_id' => 'sometimes|required|uuid',
             'position_description' => 'sometimes|nullable|string',
             'company_description' => 'sometimes|nullable|string',
-            'skill_ids' => 'sometimes|nullable|json',
+            'skill_ids' => 'sometimes|nullable',
             'employee_description' => 'sometimes|nullable|string',
             'team_description' => 'sometimes|nullable|string',
-            'interview' => 'sometimes|nullable|json',
+            'interview' => 'sometimes|nullable|array',
             'salary_form' => 'sometimes|required|string',
             'salary_to' => 'sometimes|required|string',
             'pay' => 'sometimes|required|string',
-            'category_ids' => 'sometimes|required|string',
+            'category_ids' => 'sometimes|required|array',
             'type' => 'required'
 
         ];

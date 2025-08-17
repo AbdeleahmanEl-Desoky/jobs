@@ -13,14 +13,14 @@ class UpdateJobCommand
         private ?string $job_title_id,
         private ?string $position_description,
         private ?string $company_description,
-        private ?string $skill_ids,
+        private ?array $skill_ids,
         private ?string $employee_description,
         private ?string $team_description,
-        private ?string $interview,
+        private ?array $interview,
         private ?string $salary_form,
         private ?string $salary_to,
         private ?string $pay,
-        private ?string $category_ids,
+        private ?array $category_ids,
         private ?string $type,
     ) {}
 

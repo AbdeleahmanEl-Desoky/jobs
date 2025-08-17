@@ -15,14 +15,14 @@ class CreateJobRequest extends FormRequest
             'job_title_id' => 'required|uuid',
             'position_description' => 'nullable|string',
             'company_description' => 'nullable|string',
-            'skill_ids' => 'nullable|json',
+            'skill_ids' => 'nullable|array',
             'employee_description' => 'nullable|string',
             'team_description' => 'nullable|string',
-            'interview' => 'nullable|json',
+            'interview' => 'nullable|array',
             'salary_form' => 'required|string',
             'salary_to' => 'required|string',
             'pay' => 'required|string',
-            'category_ids' => 'required|string',
+            'category_ids' => 'required|array',
             'type'=> 'required'
         ];
     }

@@ -10,14 +10,14 @@ class CreateJobDTO
         public string $job_title_id,
         public ?string $position_description,
         public ?string $company_description,
-        public ?string $skill_ids,
+        public ?array $skill_ids,
         public ?string $employee_description,
         public ?string $team_description,
-        public ?string $interview,
+        public ?array $interview,
         public string $salary_form,
         public string $salary_to,
         public string $pay,
-        public string $category_ids,
+        public array $category_ids,
         public ?string $type,
     ) {}
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary()->index();
             $table->uuid('job_title_id')->index();
             $table->string('type')->index();
-            $table->string('category_ids')->index();
+            $table->json('category_ids')->index();
             $table->text('position_description')->nullable();
             $table->text('company_description')->nullable();
             $table->json('skill_ids')->nullable()->index();
