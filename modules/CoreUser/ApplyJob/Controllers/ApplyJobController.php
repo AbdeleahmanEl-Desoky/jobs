@@ -76,18 +76,4 @@ class ApplyJobController extends Controller
 
         return Json::deleted();
     }
-
-    /**
-     * Archive an ApplyJob record.
-     */
-    public function archive(ArchiveApplyJobRequest $request): JsonResponse
-    {
-        $command = $request->createArchiveApplyJobCommand();
-        $this->archiveApplyJobHandler->handle($command);
-
-        $item = $this->applyJobService->get($command->getId());
-        $presenter = new ApplyJobPresenter($item);
-
-        return Json::item($presenter->getData(), message: 'ApplyJob archived successfully.');
-    }
 }

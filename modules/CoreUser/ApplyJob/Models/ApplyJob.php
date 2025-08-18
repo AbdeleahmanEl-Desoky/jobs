@@ -62,11 +62,5 @@ class ApplyJob extends Model implements HasMedia
     {
         return $this->belongsTo(Company::class);
     }
-        /**
-     * Get all of the apply job's archived history.
-     */
-    public function archives(): MorphMany
-    {
-        return $this->morphMany(Archived::class, 'archivable');
-    }
+
 }

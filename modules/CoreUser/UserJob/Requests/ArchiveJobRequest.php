@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modules\CoreUser\ApplyJob\Requests;
+namespace Modules\CoreUser\UserJob\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Modules\CoreUser\ApplyJob\Commands\ArchiveApplyJobCommand;
+use Modules\CoreUser\UserJob\Commands\ArchiveJobCommand;
 use Ramsey\Uuid\Uuid;
 
-class ArchiveApplyJobRequest extends FormRequest
+class ArchiveJobRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -18,11 +18,11 @@ class ArchiveApplyJobRequest extends FormRequest
         ];
     }
 
-    public function createArchiveApplyJobCommand(): ArchiveApplyJobCommand
+    public function createArchiveApplyJobCommand(): ArchiveJobCommand
     {
         $currentUserId = auth('api_user')->id();
 
-        return new ArchiveApplyJobCommand(
+        return new ArchiveJobCommand(
             id: Uuid::fromString($this->route('id')),
             userId: $this->get('user_id', $currentUserId),
             reason: $this->get('reason'),

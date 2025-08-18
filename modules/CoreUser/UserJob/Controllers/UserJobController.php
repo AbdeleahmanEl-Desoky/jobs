@@ -7,8 +7,10 @@ namespace Modules\CoreUser\UserJob\Controllers;
 use App\Presenters\Json;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Modules\CoreUser\UserJob\Handlers\ArchiveJobHandler;
 use Modules\CoreUser\UserJob\Presenters\UserJobIndexPresenter;
 use Modules\CoreUser\UserJob\Presenters\UserJobPresenter;
+use Modules\CoreUser\UserJob\Requests\ArchiveJobRequest;
 use Modules\CoreUser\UserJob\Requests\GetUserJobListRequest;
 use Modules\CoreUser\UserJob\Requests\GetUserJobRequest;
 use Modules\CoreUser\UserJob\Services\UserJobCRUDService;
@@ -18,6 +20,7 @@ class UserJobController extends Controller
 {
     public function __construct(
         private UserJobCRUDService $userJobService,
+        private ArchiveJobHandler $archiveJobHandler
     ) {
     }
 
@@ -38,5 +41,15 @@ class UserJobController extends Controller
         $presenter = new UserJobPresenter($item);
 
         return Json::item($presenter->getData());
+    }
+    public function archive(ArchiveJobRequest $request): JsonResponse
+    {
+        $command = $request->createArchiveApplyJobCommand();
+        $this->archiveJobHandler->handle($command);
+
+        $item = $this->userJobService->get($command->getId());
+        $presenter = new UserJobPresenter($item);
+
+        return Json::item($presenter->getData(), message: 'Job archived successfully.');
     }
 }

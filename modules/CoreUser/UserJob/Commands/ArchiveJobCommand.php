@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modules\CoreUser\ApplyJob\Commands;
+namespace Modules\CoreUser\UserJob\Commands;
 
 use Ramsey\Uuid\UuidInterface;
 
-class ArchiveApplyJobCommand
+class ArchiveJobCommand
 {
     public function __construct(
         private UuidInterface $id,
