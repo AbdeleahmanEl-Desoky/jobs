@@ -6,6 +6,7 @@ namespace Modules\CoreUser\UserJob\Presenters;
 
 use Modules\CoreUser\UserJob\Models\UserJob;
 use BasePackage\Shared\Presenters\AbstractPresenter;
+use Modules\CoreCompany\Company\Presenters\CompanyIndexPresenter;
 use Modules\CoreCompany\Company\Presenters\CompanyPresenter;
 use Modules\CoreCompany\Job\Models\EmployeeJob;
 use Modules\CoreUser\ApplyJob\Presenters\ApplyJobPresenter;
@@ -27,12 +28,7 @@ class UserJobPresenter extends AbstractPresenter
     {
         return [
             'id' => $this->job->id,
-            'company' => $this->job->company
-                ? [
-                    'id' => $this->job->company->id,
-                    'name' => $this->job->company->name,
-                ]
-                : null,
+            'company' => $this->job->company ? (new CompanyIndexPresenter($this->job->company))->getData() : null,
             'job_title_id' => $this->job->job_title_id,
             'position_description' => $this->job->position_description,
             'company_description' => $this->job->company_description,
