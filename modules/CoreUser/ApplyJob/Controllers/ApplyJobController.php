@@ -7,9 +7,11 @@ namespace Modules\CoreUser\ApplyJob\Controllers;
 use App\Presenters\Json;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Modules\CoreUser\ApplyJob\Handlers\ArchiveApplyJobHandler;
 use Modules\CoreUser\ApplyJob\Handlers\DeleteApplyJobHandler;
 use Modules\CoreUser\ApplyJob\Handlers\UpdateApplyJobHandler;
 use Modules\CoreUser\ApplyJob\Presenters\ApplyJobPresenter;
+use Modules\CoreUser\ApplyJob\Requests\ArchiveApplyJobRequest;
 use Modules\CoreUser\ApplyJob\Requests\CreateApplyJobRequest;
 use Modules\CoreUser\ApplyJob\Requests\DeleteApplyJobRequest;
 use Modules\CoreUser\ApplyJob\Requests\GetApplyJobListRequest;
@@ -24,6 +26,7 @@ class ApplyJobController extends Controller
         private ApplyJobCRUDService $applyJobService,
         private UpdateApplyJobHandler $updateApplyJobHandler,
         private DeleteApplyJobHandler $deleteApplyJobHandler,
+        private ArchiveApplyJobHandler $archiveApplyJobHandler,
     ) {
     }
 
@@ -72,5 +75,19 @@ class ApplyJobController extends Controller
         $this->deleteApplyJobHandler->handle(Uuid::fromString($request->route('id')));
 
         return Json::deleted();
+    }
+
+    /**
+     * Archive an ApplyJob record.
+     */
+    public function archive(ArchiveApplyJobRequest $request): JsonResponse
+    {
+        $command = $request->createArchiveApplyJobCommand();
+        $this->archiveApplyJobHandler->handle($command);
+
+        $item = $this->applyJobService->get($command->getId());
+        $presenter = new ApplyJobPresenter($item);
+
+        return Json::item($presenter->getData(), message: 'ApplyJob archived successfully.');
     }
 }

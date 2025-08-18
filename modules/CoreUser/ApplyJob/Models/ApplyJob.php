@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\CoreUser\ApplyJob\Models;
 
-use BasePackage\Shared\Traits\UuidTrait; // Assuming this trait generates UUIDs for 'id'
+use BasePackage\Shared\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\CoreUser\ApplyJob\Database\factories\ApplyJobFactory;
@@ -14,6 +14,9 @@ use Modules\CoreCompany\Job\Models\EmployeeJob;
 use Modules\CoreUser\User\Models\User;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\CoreUser\Archived\Models\Archived;
+
 class ApplyJob extends Model implements HasMedia
 {
     use HasFactory;
@@ -35,9 +38,9 @@ class ApplyJob extends Model implements HasMedia
 
     protected $casts = [
         'id' => 'string',
-        'company_id' => 'string', // Ensure UUID is handled as string
-        'agree_privacy_policy' => 'boolean', // Cast tinyInteger to boolean
-        'agree_future_job' => 'boolean',     // Cast tinyInteger to boolean
+        'company_id' => 'string',
+        'agree_privacy_policy' => 'boolean',
+        'agree_future_job' => 'boolean',
     ];
 
     protected static function newFactory(): ApplyJobFactory
@@ -58,5 +61,12 @@ class ApplyJob extends Model implements HasMedia
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+        /**
+     * Get all of the apply job's archived history.
+     */
+    public function archives(): MorphMany
+    {
+        return $this->morphMany(Archived::class, 'archivable');
     }
 }

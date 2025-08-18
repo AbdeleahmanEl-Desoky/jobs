@@ -1,0 +1,14 @@
+{
+    "name": "Archived",
+    "alias": "archived",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoreUser\\Archived\\Providers\\ArchivedServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\CoreUser"
+}

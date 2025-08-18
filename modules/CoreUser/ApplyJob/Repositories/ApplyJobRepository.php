@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Modules\CoreUser\ApplyJob\Repositories;
 
 use BasePackage\Shared\Repositories\BaseRepository;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Modules\CoreUser\ApplyJob\Commands\ArchiveApplyJobCommand;
 use Ramsey\Uuid\UuidInterface;
 use Modules\CoreUser\ApplyJob\Models\ApplyJob;
 
@@ -41,6 +43,16 @@ class ApplyJobRepository extends BaseRepository
     public function updateApplyJob(UuidInterface $id, array $data): bool
     {
         return $this->update($id, $data);
+    }
+    public function archiveApplyJob(UuidInterface $id , ArchiveApplyJobCommand $command)
+    {
+        $applyJob = $this->getApplyJob($id);
+        
+        $applyJob->archives()->create([
+            'user_id' => $command->getUserId(),
+            'reason' => $command->getReason(),
+            'archived_at' => Carbon::now(),
+        ]);
     }
 
     public function deleteApplyJob(UuidInterface $id): bool
