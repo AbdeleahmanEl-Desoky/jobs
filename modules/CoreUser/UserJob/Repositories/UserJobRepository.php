@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\CoreCompany\Job\Models\EmployeeJob;
 use Modules\CoreUser\UserJob\Commands\ArchiveJobCommand;
+use Modules\CoreUser\UserJob\Commands\SaveJobCommand;
 use Ramsey\Uuid\UuidInterface;
 use Modules\CoreUser\UserJob\Models\UserJob;
 
@@ -39,13 +40,13 @@ class UserJobRepository extends BaseRepository
     public function archiveJob(UuidInterface $id , ArchiveJobCommand $command)
     {
         $applyJob = $this->getUserJob($id);
-        $existingArchive =$applyJob->archives()->first();
+        $existingArchive =$applyJob->archive;
 
         if ($existingArchive) {
             $existingArchive->delete();
             return false;
         } else {
-            $applyJob->archives()->create([
+            $applyJob->archive()->create([
                 'user_id' => $command->getUserId(),
                 'reason' => $command->getReason(),
                 'archived_at' => Carbon::now(),
@@ -53,4 +54,23 @@ class UserJobRepository extends BaseRepository
             return true;
         }
     }
+
+    public function saveJob(UuidInterface $id , SaveJobCommand $command)
+    {
+        $applyJob = $this->getUserJob($id);
+        $existingSave =$applyJob->userSave;
+
+        if ($existingSave) {
+            $existingSave->delete();
+            return false;
+        } else {
+            $applyJob->userSave()->create([
+                'user_id' => $command->getUserId(),
+                'saved_at' => Carbon::now(),
+            ]);
+            return true;
+        }
+    }
+
+
 }

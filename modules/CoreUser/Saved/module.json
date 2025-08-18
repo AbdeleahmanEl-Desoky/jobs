@@ -1,0 +1,14 @@
+{
+    "name": "Saved",
+    "alias": "saved",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoreUser\\Saved\\Providers\\SavedServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\CoreUser"
+}

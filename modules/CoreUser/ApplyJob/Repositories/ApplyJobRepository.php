@@ -44,16 +44,6 @@ class ApplyJobRepository extends BaseRepository
     {
         return $this->update($id, $data);
     }
-    public function archiveApplyJob(UuidInterface $id , ArchiveApplyJobCommand $command)
-    {
-        $applyJob = $this->getApplyJob($id);
-        
-        $applyJob->archives()->create([
-            'user_id' => $command->getUserId(),
-            'reason' => $command->getReason(),
-            'archived_at' => Carbon::now(),
-        ]);
-    }
 
     public function deleteApplyJob(UuidInterface $id): bool
     {
