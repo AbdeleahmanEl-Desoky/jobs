@@ -36,14 +36,21 @@ class UserJobRepository extends BaseRepository
         ]);
     }
 
-        public function archiveJob(UuidInterface $id , ArchiveJobCommand $command)
+    public function archiveJob(UuidInterface $id , ArchiveJobCommand $command)
     {
         $applyJob = $this->getUserJob($id);
+        $existingArchive =$applyJob->archives()->first();
 
-        $applyJob->archives()->create([
-            'user_id' => $command->getUserId(),
-            'reason' => $command->getReason(),
-            'archived_at' => Carbon::now(),
-        ]);
+        if ($existingArchive) {
+            $existingArchive->delete();
+            return false;
+        } else {
+            $applyJob->archives()->create([
+                'user_id' => $command->getUserId(),
+                'reason' => $command->getReason(),
+                'archived_at' => Carbon::now(),
+            ]);
+            return true;
+        }
     }
 }
