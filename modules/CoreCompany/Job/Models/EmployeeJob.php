@@ -9,9 +9,11 @@ use BasePackage\Shared\Traits\UuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Modules\CoreCompany\Company\Models\Company;
 use Modules\CoreCompany\Job\Database\factories\JobFactory;
 use Modules\CoreUser\ApplyJob\Models\ApplyJob;
+use Modules\CoreUser\Archived\Models\Archived;
 use Modules\CoreUser\Skill\Models\Skill;
 use Modules\Shared\Category\Models\Category;
 
@@ -99,4 +101,8 @@ class EmployeeJob extends Model
         return $this->hasOne(ApplyJob::class, 'employee_job_id')->where('company_id', auth('api_company')->user()->id);
     }
 
+    public function archives(): MorphMany
+    {
+        return $this->morphMany(Archived::class, 'archivable')->where('user_id', auth('api_user')->user()->id);
+    }
 }

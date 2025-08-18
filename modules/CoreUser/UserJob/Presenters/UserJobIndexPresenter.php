@@ -27,9 +27,12 @@ class UserJobIndexPresenter extends AbstractPresenter
 
     protected function present(bool $isListing = false): array
     {
+        $isArchived = $this->job->archives->isNotEmpty() ? 1 : 0;
+
         return [
             'id' => $this->job->id,
             'job_title' => $this->job->jobTitle ? (new JobTitlePresenter($this->job->jobTitle))->getData() : null,
+            'is_archived' => $isArchived,
             'type'=> $this->job->type,
             'company'=> $this->job->company ? (new CompanyIndexPresenter($this->job->company))->getData() : null,
         ];

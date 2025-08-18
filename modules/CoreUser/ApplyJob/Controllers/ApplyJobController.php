@@ -7,9 +7,11 @@ namespace Modules\CoreUser\ApplyJob\Controllers;
 use App\Presenters\Json;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Modules\CoreUser\ApplyJob\Handlers\ArchiveApplyJobHandler;
 use Modules\CoreUser\ApplyJob\Handlers\DeleteApplyJobHandler;
 use Modules\CoreUser\ApplyJob\Handlers\UpdateApplyJobHandler;
 use Modules\CoreUser\ApplyJob\Presenters\ApplyJobPresenter;
+use Modules\CoreUser\ApplyJob\Requests\ArchiveApplyJobRequest;
 use Modules\CoreUser\ApplyJob\Requests\CreateApplyJobRequest;
 use Modules\CoreUser\ApplyJob\Requests\DeleteApplyJobRequest;
 use Modules\CoreUser\ApplyJob\Requests\GetApplyJobListRequest;
@@ -24,6 +26,7 @@ class ApplyJobController extends Controller
         private ApplyJobCRUDService $applyJobService,
         private UpdateApplyJobHandler $updateApplyJobHandler,
         private DeleteApplyJobHandler $deleteApplyJobHandler,
+        private ArchiveApplyJobHandler $archiveApplyJobHandler,
     ) {
     }
 

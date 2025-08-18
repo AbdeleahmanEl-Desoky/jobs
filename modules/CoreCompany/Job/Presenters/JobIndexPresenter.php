@@ -7,10 +7,6 @@ namespace Modules\CoreCompany\Job\Presenters;
 use Modules\CoreCompany\Job\Models\EmployeeJob;
 use BasePackage\Shared\Presenters\AbstractPresenter;
 use Modules\CoreCompany\Company\Presenters\CompanyIndexPresenter;
-use Modules\CoreUser\Skill\Models\Skill;
-use Modules\CoreUser\Skill\Presenters\SkillPresenter;
-use Modules\Shared\Category\Models\Category;
-use Modules\Shared\Category\Presenters\CategoryPresenter;
 use Modules\Shared\JobTitle\Presenters\JobTitlePresenter;
 
 class JobIndexPresenter extends AbstractPresenter
