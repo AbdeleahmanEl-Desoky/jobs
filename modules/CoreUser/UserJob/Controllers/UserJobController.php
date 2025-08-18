@@ -8,11 +8,13 @@ use App\Presenters\Json;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Modules\CoreUser\UserJob\Handlers\ArchiveJobHandler;
+use Modules\CoreUser\UserJob\Handlers\SaveJobHandler;
 use Modules\CoreUser\UserJob\Presenters\UserJobIndexPresenter;
 use Modules\CoreUser\UserJob\Presenters\UserJobPresenter;
 use Modules\CoreUser\UserJob\Requests\ArchiveJobRequest;
 use Modules\CoreUser\UserJob\Requests\GetUserJobListRequest;
 use Modules\CoreUser\UserJob\Requests\GetUserJobRequest;
+use Modules\CoreUser\UserJob\Requests\SavedJobRequest;
 use Modules\CoreUser\UserJob\Services\UserJobCRUDService;
 use Ramsey\Uuid\Uuid;
 
@@ -20,7 +22,8 @@ class UserJobController extends Controller
 {
     public function __construct(
         private UserJobCRUDService $userJobService,
-        private ArchiveJobHandler $archiveJobHandler
+        private ArchiveJobHandler $archiveJobHandler,
+        private SaveJobHandler $saveJobHandler
     ) {
     }
 
@@ -46,6 +49,16 @@ class UserJobController extends Controller
     {
         $command = $request->createArchiveApplyJobCommand();
         $this->archiveJobHandler->handle($command);
+
+        $item = $this->userJobService->get($command->getId());
+        $presenter = new UserJobPresenter($item);
+
+        return Json::item($presenter->getData(), message: 'Job archived successfully.');
+    }
+    public function save(SavedJobRequest $request): JsonResponse
+    {
+        $command = $request->createSaveJobCommand();
+        $this->saveJobHandler->handle($command);
 
         $item = $this->userJobService->get($command->getId());
         $presenter = new UserJobPresenter($item);

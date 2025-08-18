@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Modules\CoreCompany\Company\Models\Company;
 use Modules\CoreCompany\Job\Database\factories\JobFactory;
 use Modules\CoreUser\ApplyJob\Models\ApplyJob;
 use Modules\CoreUser\Archived\Models\Archived;
+use Modules\CoreUser\Saved\Models\Saved;
 use Modules\CoreUser\Skill\Models\Skill;
 use Modules\Shared\Category\Models\Category;
 
@@ -101,8 +103,13 @@ class EmployeeJob extends Model
         return $this->hasOne(ApplyJob::class, 'employee_job_id')->where('company_id', auth('api_company')->user()->id);
     }
 
-    public function archives(): MorphMany
+    public function archive(): MorphOne
     {
-        return $this->morphMany(Archived::class, 'archivable')->where('user_id', auth('api_user')->user()->id);
+        return $this->morphOne(Archived::class, 'archivable')->where('user_id', auth('api_user')->user()->id);
+    }
+
+    public function userSave(): MorphOne
+    {
+        return $this->morphOne(Saved::class, 'savable')->where('user_id', auth('api_user')->user()->id);
     }
 }
