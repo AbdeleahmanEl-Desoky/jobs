@@ -7,6 +7,7 @@ namespace Modules\CoreUser\UserJob\Controllers;
 use App\Presenters\Json;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Modules\CoreUser\UserJob\Presenters\UserJobIndexPresenter;
 use Modules\CoreUser\UserJob\Presenters\UserJobPresenter;
 use Modules\CoreUser\UserJob\Requests\GetUserJobListRequest;
 use Modules\CoreUser\UserJob\Requests\GetUserJobRequest;
@@ -27,7 +28,7 @@ class UserJobController extends Controller
             (int) $request->get('per_page', 10)
         );
 
-        return Json::items(UserJobPresenter::collection($list['data']), paginationSettings: $list['pagination']);
+        return Json::items(UserJobIndexPresenter::collection($list['data']), paginationSettings: $list['pagination']);
     }
 
     public function show(GetUserJobRequest $request): JsonResponse

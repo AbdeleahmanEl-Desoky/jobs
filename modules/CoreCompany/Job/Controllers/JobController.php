@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Modules\CoreCompany\Job\Handlers\DeleteJobHandler;
 use Modules\CoreCompany\Job\Handlers\UpdateJobHandler;
+use Modules\CoreCompany\Job\Presenters\JobIndexPresenter;
 use Modules\CoreCompany\Job\Presenters\JobPresenter;
 use Modules\CoreCompany\Job\Requests\CreateJobRequest;
 use Modules\CoreCompany\Job\Requests\DeleteJobRequest;
@@ -34,7 +35,7 @@ class JobController extends Controller
             (int) $request->get('per_page', 10)
         );
 
-        return Json::items(JobPresenter::collection($list['data']), paginationSettings: $list['pagination']);
+        return Json::items(JobIndexPresenter::collection($list['data']), paginationSettings: $list['pagination']);
     }
 
     public function show(GetJobRequest $request): JsonResponse
