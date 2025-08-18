@@ -28,7 +28,7 @@ class JobServiceProvider extends ModuleServiceProvider
 
     public function mapRoutes(): void
     {
-        Route::prefix('api/v1/jobs')
+        Route::prefix('api/v1/companies/jobs')
             ->middleware('api')
             ->group($this->getModulePath() . '/Resources/routes/api.php');
 

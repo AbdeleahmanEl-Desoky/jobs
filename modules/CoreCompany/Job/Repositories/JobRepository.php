@@ -10,13 +10,13 @@ use Ramsey\Uuid\UuidInterface;
 use Modules\CoreCompany\Job\Models\EmployeeJob;
 
 /**
- * @property Job $model
- * @method Job findOneOrFail($id)
- * @method Job findOneByOrFail(array $data)
+ * @property EmployeeJob $model
+ * @method EmployeeJob findOneOrFail($id)
+ * @method EmployeeJob findOneByOrFail(array $data)
  */
 class JobRepository extends BaseRepository
 {
-    public function __construct(Job $model)
+    public function __construct(EmployeeJob $model)
     {
         parent::__construct($model);
     }

@@ -1,0 +1,14 @@
+{
+    "name": "ApplyJob",
+    "alias": "applyjob",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoreUser\\ApplyJob\\Providers\\ApplyJobServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\CoreUser"
+}

@@ -13,6 +13,7 @@ use BasePackage\Shared\Traits\BaseFilterable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\CoreCompany\Job\Models\EmployeeJob;
 use Modules\Shared\City\Models\City;
 use Modules\Shared\CompanySize\Models\CompanySize;
 use Modules\Shared\Country\Models\Country;
@@ -107,5 +108,10 @@ class Company extends Authenticatable implements JWTSubject , HasMedia
     public function phoneCode()
     {
         return $this->belongsTo(Country::class,'phonecode','phonecode');
+    }
+
+    public function employeeJobs()
+    {
+        return $this->hasMany(EmployeeJob::class);
     }
 }
