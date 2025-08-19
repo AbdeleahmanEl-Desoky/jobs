@@ -16,7 +16,7 @@ use Modules\CoreCompany\Job\Database\factories\JobFactory;
 use Modules\CoreUser\ApplyJob\Models\ApplyJob;
 use Modules\CoreUser\Archived\Models\Archived;
 use Modules\CoreUser\Saved\Models\Saved;
-use Modules\CoreUser\Skill\Models\Skill;
+use Modules\CoreUser\UserSkill\Models\Skill;
 use Modules\Shared\Category\Models\Category;
 
 class EmployeeJob extends Model
@@ -42,7 +42,8 @@ class EmployeeJob extends Model
         'salary_to',
         'pay',
         'category_ids',
-        'type'
+        'type',
+        'status',
     ];
 
     protected $casts = [

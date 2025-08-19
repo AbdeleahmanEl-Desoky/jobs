@@ -7,11 +7,10 @@ namespace Modules\CoreUser\UserJob\Presenters;
 use Modules\CoreUser\UserJob\Models\UserJob;
 use BasePackage\Shared\Presenters\AbstractPresenter;
 use Modules\CoreCompany\Company\Presenters\CompanyIndexPresenter;
-use Modules\CoreCompany\Company\Presenters\CompanyPresenter;
 use Modules\CoreCompany\Job\Models\EmployeeJob;
 use Modules\CoreUser\ApplyJob\Presenters\ApplyJobPresenter;
-use Modules\CoreUser\Skill\Models\Skill;
-use Modules\CoreUser\Skill\Presenters\SkillPresenter;
+use Modules\CoreUser\UserSkill\Models\Skill;
+use Modules\CoreUser\UserSkill\Presenters\SkillPresenter;
 use Modules\Shared\Category\Models\Category;
 use Modules\Shared\Category\Presenters\CategoryPresenter;
 

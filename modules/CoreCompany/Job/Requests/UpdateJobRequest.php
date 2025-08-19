@@ -24,7 +24,7 @@ class UpdateJobRequest extends FormRequest
             'salary_to' => 'sometimes|required|string',
             'pay' => 'sometimes|required|string',
             'category_ids' => 'sometimes|required|array',
-            'type' => 'required'
+            'type' => 'sometimes'
 
         ];
     }
