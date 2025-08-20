@@ -16,7 +16,7 @@ use Modules\CoreCompany\Job\Database\factories\JobFactory;
 use Modules\CoreUser\ApplyJob\Models\ApplyJob;
 use Modules\CoreUser\Archived\Models\Archived;
 use Modules\CoreUser\Saved\Models\Saved;
-use Modules\CoreUser\UserSkill\Models\Skill;
+use Modules\Shared\Skill\Models\Skill;
 use Modules\Shared\Category\Models\Category;
 
 class EmployeeJob extends Model

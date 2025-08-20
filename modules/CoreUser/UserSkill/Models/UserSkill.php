@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\CoreUser\UserSkill\Database\factories\SkillFactory;
 use BasePackage\Shared\Traits\BaseFilterable;
+use Modules\CoreUser\User\Models\User;
+use Modules\Shared\Skill\Models\Skill;
+
 //use BasePackage\Shared\Traits\HasTranslations;
 
 class UserSkill extends Model
@@ -26,8 +29,8 @@ class UserSkill extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'name',
-        'description'
+        'skill_id',
+        'user_id',
     ];
 
     protected $casts = [
@@ -37,5 +40,13 @@ class UserSkill extends Model
     protected static function newFactory(): SkillFactory
     {
         return SkillFactory::new();
+    }
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

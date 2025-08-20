@@ -6,6 +6,7 @@ namespace Modules\CoreUser\UserSkill\Presenters;
 
 use Modules\CoreUser\UserSkill\Models\UserSkill;
 use BasePackage\Shared\Presenters\AbstractPresenter;
+use Modules\Shared\Skill\Presenters\SkillPresenter as PresentersSkillPresenter;
 
 class SkillPresenter extends AbstractPresenter
 {
@@ -20,8 +21,7 @@ class SkillPresenter extends AbstractPresenter
     {
         return [
             'id' => $this->skill->id,
-            'name' => $this->skill->name,
-            'description' => $this->skill->description
+            'skill' => $this->skill->skill ? (new PresentersSkillPresenter($this->skill->skill))->getData() : null,
         ];
     }
 }

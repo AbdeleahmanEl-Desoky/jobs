@@ -9,7 +9,7 @@ use BasePackage\Shared\Presenters\AbstractPresenter;
 use Modules\CoreCompany\Company\Presenters\CompanyIndexPresenter;
 use Modules\CoreCompany\Job\Models\EmployeeJob;
 use Modules\CoreUser\ApplyJob\Presenters\ApplyJobPresenter;
-use Modules\CoreUser\UserSkill\Models\Skill;
+use Modules\Shared\Skill\Models\Skill;
 use Modules\CoreUser\UserSkill\Presenters\SkillPresenter;
 use Modules\Shared\Category\Models\Category;
 use Modules\Shared\Category\Presenters\CategoryPresenter;

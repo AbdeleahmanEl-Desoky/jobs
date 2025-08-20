@@ -2,22 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Modules\CoreUser\UserSkill\Repositories;
+namespace Modules\Shared\Skill\Repositories;
 
 use BasePackage\Shared\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Ramsey\Uuid\UuidInterface;
-use Modules\CoreUser\UserSkill\Models\UserSkill;
 use Modules\Shared\Skill\Models\Skill;
 
 /**
- * @property UserSkill $model
+ * @property Skill $model
  * @method Skill findOneOrFail($id)
  * @method Skill findOneByOrFail(array $data)
  */
 class SkillRepository extends BaseRepository
 {
-    public function __construct(UserSkill $model)
+    public function __construct(Skill $model)
     {
         parent::__construct($model);
     }
@@ -27,20 +26,15 @@ class SkillRepository extends BaseRepository
         return $this->paginatedList([], $page, $perPage);
     }
 
-    public function getSkill(UuidInterface $id): UserSkill
+    public function getSkill(UuidInterface $id): Skill
     {
         return $this->findOneByOrFail([
             'id' => $id->toString(),
         ]);
     }
 
-    public function createSkill(array $data): UserSkill
+    public function createSkill(array $data): Skill
     {
-        if($data['name'] != null){
-            Skill::create($data);
-            $data['skill_id'] = Skill::where('name',$data['name'])->first()->id;
-        }
-
         return $this->create($data);
     }
 
