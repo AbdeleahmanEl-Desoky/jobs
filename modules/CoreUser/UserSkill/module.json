@@ -1,0 +1,14 @@
+{
+    "name": "UserSkill",
+    "alias": "UserSkill",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoreUser\\UserSkill\\Providers\\SkillServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\CoreUser"
+}

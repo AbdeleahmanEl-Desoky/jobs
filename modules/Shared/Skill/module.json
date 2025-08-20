@@ -1,0 +1,14 @@
+{
+    "name": "Skill",
+    "alias": "skill",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Shared\\Skill\\Providers\\SkillServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "namespace": "Modules\\Shared"
+}
