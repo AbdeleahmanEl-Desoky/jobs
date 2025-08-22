@@ -20,6 +20,16 @@ class EmployeeJobFilter extends SearchModelFilter
         return $this->where('job_title_id', $job_title_id);
     }
 
+    public function country($country_id)
+    {
+        return $this->where('country_id', $country_id);
+    }
+
+    public function city($city_id)
+    {
+        return $this->where('city_id', $city_id);
+    }
+
     public function positionDescription($value)
     {
         return $this->where('position_description', 'like', "%{$value}%");
@@ -117,6 +127,12 @@ class EmployeeJobFilter extends SearchModelFilter
                 });
             });
 
+            $query->orWhereHas('country', function ( $q) use ($searchTerm) {
+                    $q->where('name', 'like', $searchTerm)
+                    ->orWhere('native', 'like', $searchTerm);
+                });
+            });
+
             $query->orWhereHas('skills', function ( $q) use ($searchTerm) {
                 $q->where('name', 'like', $searchTerm);
             });
@@ -126,7 +142,7 @@ class EmployeeJobFilter extends SearchModelFilter
                     $q->where('content', 'like', $searchTerm);
                 });
             });
-            
+
         });
     }
 
