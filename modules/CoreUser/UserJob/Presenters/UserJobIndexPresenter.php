@@ -8,6 +8,8 @@ use Modules\CoreUser\UserJob\Models\UserJob;
 use BasePackage\Shared\Presenters\AbstractPresenter;
 use Modules\CoreCompany\Company\Presenters\CompanyIndexPresenter;
 use Modules\CoreCompany\Job\Models\EmployeeJob;
+use Modules\Shared\City\Presenters\CityPresenter;
+use Modules\Shared\Country\Presenters\CountryPresenter;
 use Modules\Shared\JobTitle\Presenters\JobTitlePresenter;
 
 class UserJobIndexPresenter extends AbstractPresenter
@@ -28,7 +30,10 @@ class UserJobIndexPresenter extends AbstractPresenter
             'job_title' => $this->job->jobTitle ? (new JobTitlePresenter($this->job->jobTitle))->getData() : null,
             'is_archived' => $isArchived,
             'is_saved' => $isSaved,
+            'is_applyed' => $this->job->applyJobUser ? 1 : 0,
             'type'=> $this->job->type,
+            'country' => $this->job->country? (new CountryPresenter($this->job->country))->getData() : null,
+            'city' => $this->job->city ? (new CityPresenter($this->job->city))->getData() : null,
             'company'=> $this->job->company ? (new CompanyIndexPresenter($this->job->company))->getData() : null,
         ];
     }

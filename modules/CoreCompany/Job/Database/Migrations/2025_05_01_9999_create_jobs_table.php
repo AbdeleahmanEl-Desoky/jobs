@@ -18,7 +18,6 @@ return new class extends Migration
             $table->json('category_ids');
             $table->text('position_description')->nullable();
             $table->text('company_description')->nullable();
-            $table->json('skill_ids')->nullable();
             $table->text('employee_description')->nullable();
             $table->text('team_description')->nullable();
 
@@ -32,7 +31,6 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
