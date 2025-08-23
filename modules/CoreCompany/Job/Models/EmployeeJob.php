@@ -46,12 +46,15 @@ class EmployeeJob extends Model
         'type',
         'status',
         'country_id',
-        'city_id'
+        'city_id',
+        'views_count',
+        'marke'
     ];
 
     protected $casts = [
         'id' => 'string',
         'interview' => 'json',
+        'views_count' => 'integer',
     ];
 
     protected static function newFactory(): JobFactory

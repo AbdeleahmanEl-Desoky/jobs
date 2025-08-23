@@ -26,7 +26,8 @@ class UpdateJobCommand
         private ?array $categoryIds, // <<< ADD for relation handling
         private ?string $status, // <<< ADD for relation handling
         private ?string $country_id,
-        private ?string $city_id
+        private ?string $city_id,
+        private ?int $marke
     ) {}
 
     public function getId(): UuidInterface
@@ -65,7 +66,8 @@ class UpdateJobCommand
             'type' => $this->type,
             'status' => $this->status,
             'country_id' => $this->country_id,
-            'city_id' => $this->city_id
+            'city_id' => $this->city_id,
+            'marke' => $this->marke,
         ], fn($value) => $value !== null);
     }
 }

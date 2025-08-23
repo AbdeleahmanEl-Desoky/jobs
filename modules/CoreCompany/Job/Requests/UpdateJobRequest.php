@@ -31,6 +31,7 @@ class UpdateJobRequest extends FormRequest
             'status' => 'sometimes|nullable|string', // Assuming status can be updated
             'country_id'=> 'sometimes|nullable',
             'city_id'=> 'sometimes|nullable',
+            'marke' => 'sometimes|nullable',
         ];
     }
 
@@ -55,6 +56,7 @@ class UpdateJobRequest extends FormRequest
             status: $this->get('status'),
             country_id: $this->get('country_id'),
             city_id: $this->get('city_id'),
+            marke: $this->get('marke'),
         );
     }
 }

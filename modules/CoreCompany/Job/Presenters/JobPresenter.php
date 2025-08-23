@@ -39,6 +39,7 @@ class JobPresenter extends AbstractPresenter
             'salary_form' => $this->job->salary_form,
             'salary_to' => $this->job->salary_to,
             'pay' => $this->job->pay,
+            'marke' => $this->job->marke,
             'type'=> $this->job->type,
             'status' => $this->job->status,
             'country' => $this->job->country? (new CountryPresenter($this->job->country))->getData() : null,

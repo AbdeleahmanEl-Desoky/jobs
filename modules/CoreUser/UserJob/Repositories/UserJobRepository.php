@@ -32,9 +32,13 @@ class UserJobRepository extends BaseRepository
 
     public function getUserJob(UuidInterface $id): EmployeeJob
     {
-        return $this->findOneByOrFail([
+          $job = $this->findOneByOrFail([
             'id' => $id->toString(),
-        ]);
+        ])->load(['company', 'jobTitle', 'skills', 'categories']);
+
+        $job->increment('views_count');
+
+        return $job;
     }
 
     public function archiveJob(UuidInterface $id , ArchiveJobCommand $command)

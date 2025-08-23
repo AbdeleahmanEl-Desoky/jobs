@@ -29,6 +29,11 @@ class JobIndexPresenter extends AbstractPresenter
             'company'=> $this->job->company ? (new CompanyIndexPresenter($this->job->company))->getData() : null,
             'country' => $this->job->country? (new CountryPresenter($this->job->country))->getData() : null,
             'city' => $this->job->city ? (new CityPresenter($this->job->city))->getData() : null,
+            'status' => $this->job->status,
+            'created_at' => $this->job->created_at->format('Y-m-d'),
+            'apply_job_count' => $this->job->applyJobCompany->count(),
+            'views_count' => $this->job->views_count,
+            'marke' => $this->job->marke
         ];
     }
 }
