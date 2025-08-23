@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Modules\CoreCompany\Job\Handlers;
 
 use Modules\CoreCompany\Job\Commands\UpdateJobCommand;
-use Modules\CoreCompany\Job\Repositories\JobRepository;
+use Modules\CoreCompany\Job\Repositories\JobRepository; // Using JobRepository directly now
 
 class UpdateJobHandler
 {
     public function __construct(
-        private JobRepository $repository,
+        private JobRepository $repository, // Assuming you inject JobRepository here
     ) {
     }
 
-    public function handle(UpdateJobCommand $updateJobCommand)
+    public function handle(UpdateJobCommand $updateJobCommand): bool // Return bool from repository
     {
-        $this->repository->updateJob($updateJobCommand->getId(), $updateJobCommand->toArray());
+        return $this->repository->updateJob($updateJobCommand->getId(), $updateJobCommand);
     }
 }
